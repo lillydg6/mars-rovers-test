@@ -29,9 +29,11 @@ function App() {
           Mars Rovers
         </h1>
       </header>
-      <InputForm className="App-input" onSubmit={handleSubmit} />
-      {error && <div className="App-error">{error}</div>}
+      <div className="App-body">
+      <InputForm className="App-input" onSubmit={handleSubmit} error={error} />
+      <span className="App-label">Final coords and directions:</span>
       <Output className="App-output" results={output} />
+      </div>
     </div>
   );
 }

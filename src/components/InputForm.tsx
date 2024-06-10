@@ -2,10 +2,11 @@ import React, { ChangeEvent, useState } from 'react';
 
 interface InputFormProps {
   onSubmit: (input: string) => void;
-  className?: string; 
+  error?: string | null;
+  className?: string;
 }
 
-const InputForm: React.FC<InputFormProps> = ({ onSubmit, className }) => {
+const InputForm: React.FC<InputFormProps> = ({ onSubmit, error, className }) => {
   const [input, setInput] = useState('');
   
   const handleChange = ( e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -18,7 +19,11 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, className }) => {
 
   return (
     <div className={className}>
-      <textarea value={input} onChange={handleChange} />
+      <label className="App-label">Enter instructions:</label>
+      <textarea value={input} onChange={handleChange} className={error ? 'input-error' : ''} />
+      <div className={`error-label ${input.trim() !== ''  && error ? '' : 'hidden'}`}>
+        {error}
+      </div>
       <button onClick={handleSubmit}>Submit</button>
     </div>
   )
